@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="./debounce.js"></script> -->
+    <script src="./throttle.js"></script>
+    <input id="input" type="text" />
+    <button id="btn">取消</button>
+    <script>
+      const input = document.querySelector("#input");
+      const btn = document.querySelector("#btn");
+      let i = 1;
+      function handleInput(e) {
+        console.log(`这是第${i++}次点击`);
+        console.log(this);
+        console.log(e);
+      }
+
+      // const debounceFn = debounce(handleInput, 1000);
+      // btn.addEventListener("click", debounceFn.cancel);
+
+      const throttleFn = throttle(handleInput, 1000)
+      input.addEventListener("input", throttle(handleInput, 2000, true, false));
+      btn.addEventListener('click', throttleFn.cancel)
+    </script>
+  </body>
+</html>
